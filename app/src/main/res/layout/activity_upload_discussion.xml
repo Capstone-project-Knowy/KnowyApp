@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/upload_activity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.forum.upload.UploadDiscussionActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Create New Discussion" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/tv_title_upload_discussion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/upload_title"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:alpha="0"
+        tools:alpha="100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
+    <ImageView
+        android:contentDescription="@string/image_discussion"
+        android:id="@+id/iv_upload_disccussion"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="48dp"
+        android:src="@drawable/img_upload"
+        android:alpha="0"
+        tools:alpha="100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
+    <TextView
+        android:id="@+id/tv_head_topic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/head_topic"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:alpha="0"
+        tools:alpha="100"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_upload_disccussion" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_head_topic"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:alpha="0"
+        tools:alpha="100"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title_upload_discussion"
+        app:layout_constraintStart_toStartOf="@+id/tv_title_upload_discussion"
+        app:layout_constraintTop_toBottomOf="@+id/tv_head_topic">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_head_topic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/description"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:alpha="0"
+        tools:alpha="100"
+        app:layout_constraintStart_toStartOf="@+id/tv_title_upload_discussion"
+        app:layout_constraintTop_toBottomOf="@+id/til_head_topic" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_description"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:alpha="0"
+        tools:alpha="100"
+        app:layout_constraintBottom_toTopOf="@+id/btn_upload"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title_upload_discussion"
+        app:layout_constraintStart_toStartOf="@+id/tv_title_upload_discussion"
+        app:layout_constraintTop_toBottomOf="@+id/tv_description">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_upload"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="32dp"
+        android:text="@string/create_discussion"
+        android:textSize="16sp"
+        android:alpha="0"
+        tools:alpha="100"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title_upload_discussion"
+        app:layout_constraintStart_toStartOf="@+id/tv_title_upload_discussion"
+        app:layout_constraintTop_toBottomOf="@+id/til_description" />
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progressIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
