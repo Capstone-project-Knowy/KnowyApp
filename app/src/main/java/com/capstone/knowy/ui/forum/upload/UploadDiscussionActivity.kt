@@ -46,16 +46,16 @@ class UploadDiscussionActivity : AppCompatActivity() {
         val title = ObjectAnimator.ofFloat(binding.tvTitleUploadDiscussion, View.ALPHA, 1f)
             .setDuration(1000)
         val img =
-            ObjectAnimator.ofFloat(binding.ivUploadDisccussion, View.ALPHA, 1f).setDuration(500)
+            ObjectAnimator.ofFloat(binding.ivUploadDisccussion, View.ALPHA, 1f).setDuration(350)
         val headTopic =
-            ObjectAnimator.ofFloat(binding.tvHeadTopic, View.ALPHA, 1f).setDuration(500)
+            ObjectAnimator.ofFloat(binding.tvHeadTopic, View.ALPHA, 1f).setDuration(350)
         val tilHeadTopic =
-            ObjectAnimator.ofFloat(binding.tilHeadTopic, View.ALPHA, 1f).setDuration(500)
+            ObjectAnimator.ofFloat(binding.tilHeadTopic, View.ALPHA, 1f).setDuration(350)
         val description =
-            ObjectAnimator.ofFloat(binding.tvDescription, View.ALPHA, 1f).setDuration(500)
+            ObjectAnimator.ofFloat(binding.tvDescription, View.ALPHA, 1f).setDuration(350)
         val tilDescription =
-            ObjectAnimator.ofFloat(binding.tilDescription, View.ALPHA, 1f).setDuration(500)
-        val btnUpload = ObjectAnimator.ofFloat(binding.btnUpload, View.ALPHA, 1f).setDuration(500)
+            ObjectAnimator.ofFloat(binding.tilDescription, View.ALPHA, 1f).setDuration(350)
+        val btnUpload = ObjectAnimator.ofFloat(binding.btnUpload, View.ALPHA, 1f).setDuration(350)
 
         AnimatorSet().apply {
             playSequentially(
