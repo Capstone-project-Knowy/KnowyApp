@@ -41,23 +41,17 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     private fun playAnimation() {
-        val img = ObjectAnimator.ofFloat(binding.civAvatar, View.ALPHA, 1f).setDuration(500)
-        val fullName = ObjectAnimator.ofFloat(binding.tvFullName, View.ALPHA, 1f).setDuration(500)
+        val img = ObjectAnimator.ofFloat(binding.civAvatar, View.ALPHA, 1f).setDuration(350)
+        val fullName = ObjectAnimator.ofFloat(binding.tvFullName, View.ALPHA, 1f).setDuration(350)
         val tilFulName =
-            ObjectAnimator.ofFloat(binding.tilFullName, View.ALPHA, 1f).setDuration(500)
-        val username = ObjectAnimator.ofFloat(binding.tvUsername, View.ALPHA, 1f).setDuration(500)
+            ObjectAnimator.ofFloat(binding.tilFullName, View.ALPHA, 1f).setDuration(350)
+        val username = ObjectAnimator.ofFloat(binding.tvUsername, View.ALPHA, 1f).setDuration(350)
         val tilUsername =
-            ObjectAnimator.ofFloat(binding.tilUsername, View.ALPHA, 1f).setDuration(500)
-        val age = ObjectAnimator.ofFloat(binding.tvAge, View.ALPHA, 1f).setDuration(500)
-        val tilAge = ObjectAnimator.ofFloat(binding.tilAge, View.ALPHA, 1f).setDuration(500)
-        val gender = ObjectAnimator.ofFloat(binding.tvGender, View.ALPHA, 1f).setDuration(500)
-        val tilGender = ObjectAnimator.ofFloat(binding.tilGender, View.ALPHA, 1f).setDuration(500)
-        val bio = ObjectAnimator.ofFloat(binding.tvDescBio, View.ALPHA, 1f).setDuration(500)
-        val tilBio = ObjectAnimator.ofFloat(binding.tilDescBio, View.ALPHA, 1f).setDuration(500)
-        val btnSave = ObjectAnimator.ofFloat(binding.btnSaveProfile, View.ALPHA, 1f).setDuration(500)
+            ObjectAnimator.ofFloat(binding.tilUsername, View.ALPHA, 1f).setDuration(350)
+        val btnSave = ObjectAnimator.ofFloat(binding.btnSaveProfile, View.ALPHA, 1f).setDuration(350)
 
         AnimatorSet().apply {
-            playSequentially(img,fullName, tilFulName, username, tilUsername, age, tilAge, gender, tilGender, bio, tilBio, btnSave)
+            playSequentially(img,fullName, tilFulName, username, tilUsername, btnSave)
         }.start()
     }
 }

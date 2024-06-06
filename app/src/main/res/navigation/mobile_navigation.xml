@@ -16,9 +16,6 @@
         <action
             android:id="@+id/action_test_to_profile"
             app:destination="@id/navigation_profile" />
-        <action
-            android:id="@+id/action_test_to_history"
-            app:destination="@+id/navigation_history"/>
     </fragment>
 
     <fragment
@@ -32,9 +29,6 @@
         <action
             android:id="@+id/action_forum_discussion_to_profile"
             app:destination="@id/navigation_profile" />
-        <action
-            android:id="@+id/action_forum_to_history"
-            app:destination="@+id/navigation_history"/>
     </fragment>
 
     <fragment
@@ -48,27 +42,7 @@
         <action
             android:id="@+id/action_profile_to_forum_discussion"
             app:destination="@id/navigation_forum_discussion"/>
-        <action
-            android:id="@+id/action_profile_to_history"
-            app:destination="@+id/navigation_history"/>
     </fragment>
 
-    <fragment
-        android:id="@+id/navigation_history"
-        android:name="com.capstone.knowy.ui.history.HistoryFragment"
-        android:label="Test History"
-        tools:layout="@layout/fragment_history">
-
-        <action
-            android:id="@+id/action_history_to_test"
-            app:destination="@id/navigation_test" />
-        <action
-            android:id="@+id/action_history_to_forum_discussion"
-            app:destination="@id/navigation_forum_discussion"/>
-        <action
-            android:id="@+id/action_history_to_edit_profile"
-            app:destination="@+id/navigation_edit_profile"/>
-
-    </fragment>
 
 </navigation>

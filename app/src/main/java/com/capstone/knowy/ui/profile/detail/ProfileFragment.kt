@@ -30,6 +30,7 @@ class ProfileFragment : Fragment() {
 
         binding.btnLogout.setOnClickListener(){
             val intent = Intent(activity, WelcomeActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
         }
         return root

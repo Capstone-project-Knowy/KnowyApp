@@ -41,15 +41,15 @@ class RegisterActivity : AppCompatActivity() {
             repeatMode = ObjectAnimator.REVERSE
         }.start()
 
-        val register = ObjectAnimator.ofFloat(binding.tvRegisterAccount, View.ALPHA, 1f).setDuration(500)
-        val personal = ObjectAnimator.ofFloat(binding.tvPersonalInformation, View.ALPHA, 1f).setDuration(500)
-        val username = ObjectAnimator.ofFloat(binding.tvUsername, View.ALPHA, 1f).setDuration(500)
-        val usernameTil = ObjectAnimator.ofFloat(binding.tilUsername, View.ALPHA, 1f).setDuration(500)
-        val email = ObjectAnimator.ofFloat(binding.tvEmail, View.ALPHA, 1f).setDuration(500)
-        val emailTil = ObjectAnimator.ofFloat(binding.tilEmail, View.ALPHA, 1f).setDuration(500)
-        val password = ObjectAnimator.ofFloat(binding.tvPassword, View.ALPHA, 1f).setDuration(500)
-        val passwordTil = ObjectAnimator.ofFloat(binding.tilPassword, View.ALPHA, 1f).setDuration(500)
-        val btnRegister = ObjectAnimator.ofFloat(binding.btnRegister, View.ALPHA, 1f).setDuration(500)
+        val register = ObjectAnimator.ofFloat(binding.tvRegisterAccount, View.ALPHA, 1f).setDuration(350)
+        val personal = ObjectAnimator.ofFloat(binding.tvPersonalInformation, View.ALPHA, 1f).setDuration(350)
+        val username = ObjectAnimator.ofFloat(binding.tvUsername, View.ALPHA, 1f).setDuration(350)
+        val usernameTil = ObjectAnimator.ofFloat(binding.tilUsername, View.ALPHA, 1f).setDuration(350)
+        val email = ObjectAnimator.ofFloat(binding.tvEmail, View.ALPHA, 1f).setDuration(350)
+        val emailTil = ObjectAnimator.ofFloat(binding.tilEmail, View.ALPHA, 1f).setDuration(350)
+        val password = ObjectAnimator.ofFloat(binding.tvPassword, View.ALPHA, 1f).setDuration(350)
+        val passwordTil = ObjectAnimator.ofFloat(binding.tilPassword, View.ALPHA, 1f).setDuration(350)
+        val btnRegister = ObjectAnimator.ofFloat(binding.btnRegister, View.ALPHA, 1f).setDuration(350)
 
         AnimatorSet().apply {
             playSequentially(register, personal, username, usernameTil, email, emailTil, password, passwordTil, btnRegister)

@@ -13,6 +13,21 @@
         android:theme="@style/Theme.Knowy"
         tools:targetApi="31">
         <activity
+            android:name=".ui.test.aptitude.testview.AptitudeTestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.test.result.ResultTestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.test.ocean.testview.OceanTestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.test.aptitude.home.AptitudeHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.test.ocean.home.OceanHomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.profile.edit.EditProfileActivity"
             android:exported="false" />
         <activity
