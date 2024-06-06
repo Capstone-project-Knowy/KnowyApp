@@ -26,10 +26,12 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="80dp"
+        android:src="@drawable/ic_avatar"
+        app:layout_constraintBottom_toTopOf="@+id/btn_edit_profile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        tools:src="@tools:sample/avatars" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
     <TextView
         android:id="@+id/textView"
@@ -37,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/fullname"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/circleImageView"
         app:layout_constraintStart_toStartOf="@+id/circleImageView"
@@ -48,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/nickname"
-        android:textSize="16sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintStart_toStartOf="@+id/textView"
