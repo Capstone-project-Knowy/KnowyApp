@@ -1,4 +1,7 @@
 package com.capstone.knowy.ui.register
 
-class RegisterViewModel {
+import androidx.lifecycle.ViewModel
+import com.capstone.knowy.data.repository.Repository
+
+class RegisterViewModel (private val repository: Repository) : ViewModel(){
 }
