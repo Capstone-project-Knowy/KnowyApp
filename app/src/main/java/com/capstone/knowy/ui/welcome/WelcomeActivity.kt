@@ -6,15 +6,26 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.capstone.knowy.R
+import com.capstone.knowy.data.di.Injection
 import com.capstone.knowy.databinding.ActivityWelcomeBinding
+import com.capstone.knowy.ui.factory.ViewModelFactory
+import com.capstone.knowy.ui.home.MainActivity
 import com.capstone.knowy.ui.login.LoginActivity
 
 class WelcomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWelcomeBinding
+
+    private val viewModel: WelcomeViewModel by viewModels {
+        ViewModelFactory.useViewModelFactory {
+            WelcomeViewModel(Injection.provideRepository(this))
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWelcomeBinding.inflate(layoutInflater)
@@ -32,6 +43,13 @@ class WelcomeActivity : AppCompatActivity() {
         }
 
         playAnimation()
+
+        viewModel.getSession().observe(this){user ->
+            if (user.isLogin) {
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            }
+        }
     }
 
     private fun playAnimation() {

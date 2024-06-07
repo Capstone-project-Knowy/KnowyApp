@@ -5,18 +5,30 @@ import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.capstone.knowy.R
+import com.capstone.knowy.data.di.Injection
+import com.capstone.knowy.data.result.Result
 import com.capstone.knowy.databinding.ActivityLoginBinding
+import com.capstone.knowy.ui.factory.ViewModelFactory
 import com.capstone.knowy.ui.home.MainActivity
 import com.capstone.knowy.ui.register.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityLoginBinding
+    private lateinit var binding: ActivityLoginBinding
+
+    private val viewModel: LoginViewModel by viewModels {
+        ViewModelFactory.useViewModelFactory {
+            LoginViewModel(Injection.provideRepository(this))
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -28,19 +40,45 @@ class LoginActivity : AppCompatActivity() {
             insets
         }
 
-        binding.btnRegister.setOnClickListener(){
+        binding.btnRegister.setOnClickListener() {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
 
-        binding.btnLogin.setOnClickListener(){
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+        binding.btnLogin.setOnClickListener() {
+            loginUser()
         }
         playAnimation()
     }
 
-    private fun playAnimation(){
+    private fun loginUser() {
+        viewModel.loginUser(binding.etLoginEmail.text.toString(), binding.etLoginPassword.text.toString())
+            .observe(this) {
+                if (it is Result.Loading){
+                    showLoading(true)
+                } else {
+                    showLoading(false)
+                    when(it){
+                        is Result.Success -> {
+                            Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                            startActivity(intent)
+                        }
+                        is Result.Error -> {
+                            Toast.makeText(this, "Login Failed : ${it.error})", Toast.LENGTH_SHORT).show()
+                        }
+                        else -> {}
+                    }
+                }
+            }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun playAnimation() {
         ObjectAnimator.ofFloat(binding.imgLogin, View.TRANSLATION_X, -30f, 30f).apply {
             duration = 6000
             repeatCount = ObjectAnimator.INFINITE
@@ -51,12 +89,24 @@ class LoginActivity : AppCompatActivity() {
         val email = ObjectAnimator.ofFloat(binding.tvEmail, View.ALPHA, 1f).setDuration(350)
         val emailEdit = ObjectAnimator.ofFloat(binding.tilEmail, View.ALPHA, 1f).setDuration(350)
         val password = ObjectAnimator.ofFloat(binding.tvPassword, View.ALPHA, 1f).setDuration(350)
-        val passwordEdit = ObjectAnimator.ofFloat(binding.tilPassword, View.ALPHA, 1f).setDuration(350)
+        val passwordEdit =
+            ObjectAnimator.ofFloat(binding.tilPassword, View.ALPHA, 1f).setDuration(350)
         val btnLogin = ObjectAnimator.ofFloat(binding.btnLogin, View.ALPHA, 1f).setDuration(350)
-        val notAccount = ObjectAnimator.ofFloat(binding.tvNotHaveAccount, View.ALPHA, 1f).setDuration(350)
+        val notAccount =
+            ObjectAnimator.ofFloat(binding.tvNotHaveAccount, View.ALPHA, 1f).setDuration(350)
         val register = ObjectAnimator.ofFloat(binding.btnRegister, View.ALPHA, 1f).setDuration(350)
         AnimatorSet().apply {
-            playSequentially(welcome, login, email, emailEdit, password, passwordEdit, btnLogin, notAccount, register)
+            playSequentially(
+                welcome,
+                login,
+                email,
+                emailEdit,
+                password,
+                passwordEdit,
+                btnLogin,
+                notAccount,
+                register
+            )
         }.start()
     }
 }
