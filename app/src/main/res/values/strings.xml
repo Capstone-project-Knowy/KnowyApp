@@ -86,5 +86,6 @@
     <string name="abstract_description">Identify patterns, relationships, and rules in abstract information, typically presented in the form of shapes, symbols, or diagrams</string>
     <string name="verbal_reasoning">Verbal Reasoning Test</string>
     <string name="verbal_description">Individual\'s ability to understand, analyze, and interpret written language.</string>
+    <string name="confirm_password">Confirm Password</string>
 
 </resources>

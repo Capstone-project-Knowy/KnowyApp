@@ -6,7 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.capstone.knowy.data.di.Injection
 import com.capstone.knowy.databinding.FragmentTestBinding
+import com.capstone.knowy.ui.factory.ViewModelFactory
 import com.capstone.knowy.ui.test.aptitude.home.AptitudeHomeActivity
 import com.capstone.knowy.ui.test.ocean.home.OceanHomeActivity
 import com.capstone.knowy.ui.test.result.ResultTestActivity
@@ -14,6 +17,12 @@ import com.capstone.knowy.ui.test.result.ResultTestActivity
 class TestFragment : Fragment() {
     private var _binding: FragmentTestBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: TestViewModel by viewModels {
+        ViewModelFactory.useViewModelFactory {
+            TestViewModel(Injection.provideRepository(requireActivity()))
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
