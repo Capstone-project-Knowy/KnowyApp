@@ -2,12 +2,15 @@ package com.capstone.knowy.ui.test
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.capstone.knowy.data.di.Injection
+import com.capstone.knowy.data.response.User
+import com.capstone.knowy.data.result.Result
 import com.capstone.knowy.databinding.FragmentTestBinding
 import com.capstone.knowy.ui.factory.ViewModelFactory
 import com.capstone.knowy.ui.test.aptitude.home.AptitudeHomeActivity
@@ -30,24 +33,40 @@ class TestFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
+        viewModel.getDetail().observe(viewLifecycleOwner) {
+            getUsername(it)
+        }
+
         _binding = FragmentTestBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        binding.btnGoToOcean.setOnClickListener(){
+        binding.btnGoToOcean.setOnClickListener() {
             val intent = Intent(activity, OceanHomeActivity::class.java)
             startActivity(intent)
         }
 
-        binding.btnGoToAptitude.setOnClickListener(){
+        binding.btnGoToAptitude.setOnClickListener() {
             val intent = Intent(activity, AptitudeHomeActivity::class.java)
             startActivity(intent)
         }
 
-        binding.btnAnalyze.setOnClickListener(){
+        binding.btnAnalyze.setOnClickListener() {
             val intent = Intent(activity, ResultTestActivity::class.java)
             startActivity(intent)
         }
         return root
+    }
+
+    private fun getUsername(result: Result<User>) {
+        when (result) {
+            is Result.Success -> {
+                val story = result.data
+                binding.tvUsername.text = story.username
+                Log.d("Result Data", story.username)
+            }
+
+            else -> {}
+        }
     }
 
     override fun onDestroyView() {

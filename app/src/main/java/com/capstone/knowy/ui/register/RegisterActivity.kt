@@ -52,12 +52,11 @@ class RegisterActivity : AppCompatActivity() {
             binding.etRegisterPassword.text.toString(),
             binding.etRegisterConfirmPassword.text.toString()
         ).observe(this) {
-            if (it is Result.Loading){
+            if (it is Result.Loading) {
                 showLoading(true)
-            }
-            else {
+            } else {
                 showLoading(false)
-                when(it) {
+                when (it) {
                     is Result.Success -> {
                         Toast.makeText(this, "Register Success", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
@@ -65,8 +64,10 @@ class RegisterActivity : AppCompatActivity() {
                     }
 
                     is Result.Error -> {
-                        Toast.makeText(this, "Register Failed : ${it.error})", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Register Failed : ${it.error})", Toast.LENGTH_SHORT)
+                            .show()
                     }
+
                     else -> {}
                 }
             }

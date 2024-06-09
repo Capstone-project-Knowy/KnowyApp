@@ -44,7 +44,7 @@ class WelcomeActivity : AppCompatActivity() {
 
         playAnimation()
 
-        viewModel.getSession().observe(this){user ->
+        viewModel.getSession().observe(this) { user ->
             if (user.isLogin) {
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()

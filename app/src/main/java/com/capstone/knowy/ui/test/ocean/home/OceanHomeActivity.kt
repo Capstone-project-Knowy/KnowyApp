@@ -12,7 +12,7 @@ import com.capstone.knowy.ui.test.ocean.testview.OceanTestActivity
 
 class OceanHomeActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityOceanHomeBinding
+    private lateinit var binding: ActivityOceanHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,27 +25,27 @@ class OceanHomeActivity : AppCompatActivity() {
             insets
         }
 
-        binding.btnOpenness.setOnClickListener(){
+        binding.btnOpenness.setOnClickListener() {
             val intent = Intent(this@OceanHomeActivity, OceanTestActivity::class.java)
             intent.putExtra(OceanTestActivity.EXTRA_TEST_NAME, "Openness Test")
             startActivity(intent)
         }
-        binding.btnConscientiousness.setOnClickListener(){
+        binding.btnConscientiousness.setOnClickListener() {
             val intent = Intent(this@OceanHomeActivity, OceanTestActivity::class.java)
             intent.putExtra(OceanTestActivity.EXTRA_TEST_NAME, "Conscientiousness Test")
             startActivity(intent)
         }
-        binding.btnExtraVersion.setOnClickListener(){
+        binding.btnExtraVersion.setOnClickListener() {
             val intent = Intent(this@OceanHomeActivity, OceanTestActivity::class.java)
             intent.putExtra(OceanTestActivity.EXTRA_TEST_NAME, "Extraversion Test")
             startActivity(intent)
         }
-        binding.btnAgreeableness.setOnClickListener(){
+        binding.btnAgreeableness.setOnClickListener() {
             val intent = Intent(this@OceanHomeActivity, OceanTestActivity::class.java)
             intent.putExtra(OceanTestActivity.EXTRA_TEST_NAME, "Agreeableness Test")
             startActivity(intent)
         }
-        binding.btnNeuroticism.setOnClickListener(){
+        binding.btnNeuroticism.setOnClickListener() {
             val intent = Intent(this@OceanHomeActivity, OceanTestActivity::class.java)
             intent.putExtra(OceanTestActivity.EXTRA_TEST_NAME, "Neuroticism Test")
             startActivity(intent)

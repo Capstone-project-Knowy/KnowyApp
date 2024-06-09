@@ -25,27 +25,27 @@ class AptitudeHomeActivity : AppCompatActivity() {
             insets
         }
 
-        binding.btnNumerical.setOnClickListener(){
+        binding.btnNumerical.setOnClickListener() {
             val intent = Intent(this@AptitudeHomeActivity, OceanTestActivity::class.java)
             intent.putExtra(AptitudeTestActivity.TEST_NAME, "Numerical Aptitude Test")
             startActivity(intent)
         }
-        binding.btnSpatial.setOnClickListener(){
+        binding.btnSpatial.setOnClickListener() {
             val intent = Intent(this@AptitudeHomeActivity, OceanTestActivity::class.java)
             intent.putExtra(AptitudeTestActivity.TEST_NAME, "Spatial Aptitude Test")
             startActivity(intent)
         }
-        binding.btnPerceptual.setOnClickListener(){
+        binding.btnPerceptual.setOnClickListener() {
             val intent = Intent(this@AptitudeHomeActivity, OceanTestActivity::class.java)
             intent.putExtra(AptitudeTestActivity.TEST_NAME, "Perceptual Aptitude Test")
             startActivity(intent)
         }
-        binding.btnAbstrac.setOnClickListener(){
+        binding.btnAbstrac.setOnClickListener() {
             val intent = Intent(this@AptitudeHomeActivity, OceanTestActivity::class.java)
             intent.putExtra(AptitudeTestActivity.TEST_NAME, "Abstract Reasoning Test")
             startActivity(intent)
         }
-        binding.btnVerbal.setOnClickListener(){
+        binding.btnVerbal.setOnClickListener() {
             val intent = Intent(this@AptitudeHomeActivity, OceanTestActivity::class.java)
             intent.putExtra(AptitudeTestActivity.TEST_NAME, "Verbal Reasoning Test")
             startActivity(intent)

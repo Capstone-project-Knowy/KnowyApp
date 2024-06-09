@@ -10,7 +10,7 @@ import com.capstone.knowy.databinding.ActivityOceanTestBinding
 
 class OceanTestActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityOceanTestBinding
+    private lateinit var binding: ActivityOceanTestBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityOceanTestBinding.inflate(layoutInflater)
@@ -27,22 +27,26 @@ class OceanTestActivity : AppCompatActivity() {
             getString(R.string.openness) -> {
                 binding.topAppBar.title = testName
             }
+
             getString(R.string.conscientiousness) -> {
                 binding.topAppBar.title = testName
             }
+
             getString(R.string.extra_version) -> {
                 binding.topAppBar.title = testName
             }
+
             getString(R.string.agreeableness) -> {
                 binding.topAppBar.title = testName
             }
+
             else -> {
                 binding.topAppBar.title = testName
             }
         }
     }
 
-    companion object{
+    companion object {
         const val EXTRA_TEST_NAME = "extra_text_name"
     }
 }

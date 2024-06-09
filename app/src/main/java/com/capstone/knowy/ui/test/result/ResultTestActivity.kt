@@ -11,7 +11,7 @@ import com.capstone.knowy.databinding.ActivityResultTestBinding
 import com.capstone.knowy.ui.home.MainActivity
 
 class ResultTestActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityResultTestBinding
+    private lateinit var binding: ActivityResultTestBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityResultTestBinding.inflate(layoutInflater)
@@ -23,7 +23,7 @@ class ResultTestActivity : AppCompatActivity() {
             insets
         }
 
-        binding.btnBackToHome.setOnClickListener(){
+        binding.btnBackToHome.setOnClickListener() {
             val intent = Intent(this@ResultTestActivity, MainActivity::class.java)
             startActivity(intent)
         }

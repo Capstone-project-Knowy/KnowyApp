@@ -52,22 +52,29 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginUser() {
-        viewModel.loginUser(binding.etLoginEmail.text.toString(), binding.etLoginPassword.text.toString())
+        viewModel.loginUser(
+            binding.etLoginEmail.text.toString(),
+            binding.etLoginPassword.text.toString()
+        )
             .observe(this) {
-                if (it is Result.Loading){
+                if (it is Result.Loading) {
                     showLoading(true)
                 } else {
                     showLoading(false)
-                    when(it){
+                    when (it) {
                         is Result.Success -> {
                             Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show()
                             val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                            intent.flags =
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                             startActivity(intent)
                         }
+
                         is Result.Error -> {
-                            Toast.makeText(this, "Login Failed : ${it.error})", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "Login Failed : ${it.error})", Toast.LENGTH_SHORT)
+                                .show()
                         }
+
                         else -> {}
                     }
                 }

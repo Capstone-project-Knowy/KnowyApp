@@ -50,19 +50,21 @@ class EditProfileActivity : AppCompatActivity() {
             binding.etFullName.text.toString(),
             binding.etUsername.text.toString()
         ).observe(this) {
-            if (it is Result.Loading){
+            if (it is Result.Loading) {
                 showLoading(false)
-            }
-            else{
+            } else {
                 showLoading(false)
-                when(it){
+                when (it) {
                     is Result.Success -> {
                         Toast.makeText(this, "Profile has been Updated", Toast.LENGTH_SHORT).show()
                         loadFragment(ProfileFragment())
                     }
+
                     is Result.Error -> {
-                        Toast.makeText(this, "Edit Failed : ${it.error})", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Edit Failed : ${it.error})", Toast.LENGTH_SHORT)
+                            .show()
                     }
+
                     else -> {}
                 }
             }
