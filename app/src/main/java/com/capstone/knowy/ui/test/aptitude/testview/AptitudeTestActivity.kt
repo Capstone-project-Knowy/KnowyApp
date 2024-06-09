@@ -10,7 +10,7 @@ import com.capstone.knowy.databinding.ActivityAptitudeTestBinding
 import com.capstone.knowy.ui.test.ocean.testview.OceanTestActivity
 
 class AptitudeTestActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityAptitudeTestBinding
+    private lateinit var binding: ActivityAptitudeTestBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAptitudeTestBinding.inflate(layoutInflater)
@@ -26,15 +26,19 @@ class AptitudeTestActivity : AppCompatActivity() {
             getString(R.string.numerical_aptitude) -> {
                 binding.topAppBar.title = testName
             }
+
             getString(R.string.spatial_aptitude) -> {
                 binding.topAppBar.title = testName
             }
+
             getString(R.string.perceptual_aptitude) -> {
                 binding.topAppBar.title = testName
             }
+
             getString(R.string.abstract_reasoning) -> {
                 binding.topAppBar.title = testName
             }
+
             else -> {
                 binding.topAppBar.title = testName
             }
@@ -43,7 +47,7 @@ class AptitudeTestActivity : AppCompatActivity() {
 
     }
 
-    companion object{
+    companion object {
         const val TEST_NAME = "extra_text_name"
     }
 }

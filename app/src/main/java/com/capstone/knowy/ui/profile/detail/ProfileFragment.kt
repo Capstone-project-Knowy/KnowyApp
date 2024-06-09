@@ -2,12 +2,15 @@ package com.capstone.knowy.ui.profile.detail
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.capstone.knowy.data.di.Injection
+import com.capstone.knowy.data.response.User
+import com.capstone.knowy.data.result.Result
 import com.capstone.knowy.databinding.FragmentProfileBinding
 import com.capstone.knowy.ui.factory.ViewModelFactory
 import com.capstone.knowy.ui.profile.edit.EditProfileActivity
@@ -32,6 +35,10 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        viewModel.getUserDetail().observe(viewLifecycleOwner){
+            getDetail(it)
+        }
+
         binding.btnEditProfile.setOnClickListener(){
             val intent = Intent(activity, EditProfileActivity::class.java)
             startActivity(intent)
@@ -44,6 +51,18 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
         }
         return root
+    }
+
+    private fun getDetail(result: Result<User>){
+        when (result) {
+            is Result.Success -> {
+                val story = result.data
+                binding.tvFullName.text = story.fullname
+                binding.tvUsername.text = story.username
+                Log.d("Result Data", story.username)
+            }
+            else -> {}
+        }
     }
 
     override fun onDestroyView() {

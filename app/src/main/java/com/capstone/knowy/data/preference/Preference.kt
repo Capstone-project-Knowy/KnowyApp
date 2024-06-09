@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.map
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "session")
 
-class Preference private constructor(private val dataStore : DataStore<Preferences>) {
+class Preference private constructor(private val dataStore: DataStore<Preferences>) {
 
     suspend fun getAccessToken(): String {
         return dataStore.data.map { value: Preferences -> value[TOKEN_KEY] ?: "" }.first()
@@ -48,7 +48,6 @@ class Preference private constructor(private val dataStore : DataStore<Preferenc
             preferences.clear()
         }
     }
-
 
 
     companion object {
