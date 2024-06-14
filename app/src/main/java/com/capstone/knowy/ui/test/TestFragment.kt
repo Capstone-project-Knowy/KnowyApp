@@ -58,15 +58,20 @@ class TestFragment : Fragment() {
     }
 
     private fun getUsername(result: Result<User>) {
+        showLoading(result is Result.Loading)
         when (result) {
             is Result.Success -> {
-                val story = result.data
-                binding.tvUsername.text = story.username
-                Log.d("Result Data", story.username)
+                val user = result.data
+                binding.tvUsername.text = user.username
+                Log.d("Result Data", user.username)
             }
 
             else -> {}
         }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     override fun onDestroyView() {

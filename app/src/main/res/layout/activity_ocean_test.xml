@@ -11,6 +11,7 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -19,7 +20,8 @@
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="OCEAN TEST" />
+            app:title="OCEAN TEST"
+            app:titleTextColor="@color/white" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.progressindicator.LinearProgressIndicator
@@ -47,6 +49,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="128dp"
+            android:background="@color/blue"
             android:padding="16dp">
 
             <TextView
@@ -54,6 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/question"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -70,7 +74,8 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/answer_1"
+        android:backgroundTint="@color/gray"
+        android:text="@string/strongly_agree"
         app:layout_constraintEnd_toEndOf="@+id/card_question"
         app:layout_constraintStart_toStartOf="@+id/card_question"
         app:layout_constraintTop_toBottomOf="@+id/card_question" />
@@ -80,7 +85,8 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/answer_2"
+        android:backgroundTint="@color/gray"
+        android:text="@string/agree"
         app:layout_constraintEnd_toEndOf="@+id/btn_answer_1"
         app:layout_constraintStart_toStartOf="@+id/btn_answer_1"
         app:layout_constraintTop_toBottomOf="@+id/btn_answer_1" />
@@ -90,7 +96,8 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/answer_3"
+        android:backgroundTint="@color/gray"
+        android:text="@string/neutral"
         app:layout_constraintEnd_toEndOf="@+id/btn_answer_2"
         app:layout_constraintStart_toStartOf="@+id/btn_answer_2"
         app:layout_constraintTop_toBottomOf="@+id/btn_answer_2" />
@@ -100,7 +107,8 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/answer_4"
+        android:backgroundTint="@color/gray"
+        android:text="@string/disagree"
         app:layout_constraintEnd_toEndOf="@+id/btn_answer_3"
         app:layout_constraintStart_toStartOf="@+id/btn_answer_3"
         app:layout_constraintTop_toBottomOf="@+id/btn_answer_3" />
@@ -110,12 +118,14 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/answer_5"
+        android:backgroundTint="@color/gray"
+        android:text="@string/strongly_disagree"
         app:layout_constraintEnd_toEndOf="@+id/btn_answer_4"
         app:layout_constraintStart_toStartOf="@+id/btn_answer_4"
         app:layout_constraintTop_toBottomOf="@+id/btn_answer_4" />
 
     <Button
+        android:id="@+id/btn_next"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="@string/next"
@@ -123,9 +133,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_answer_5" />
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

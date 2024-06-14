@@ -15,6 +15,7 @@
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/blue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -23,7 +24,8 @@
                 android:id="@+id/topAppBar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:title="APTITUDE TEST" />
+                app:title="APTITUDE TEST"
+                app:titleTextColor="@color/white" />
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.cardview.widget.CardView
@@ -164,7 +166,6 @@
                     app:layout_constraintEnd_toEndOf="@+id/tv_spatial_description"
                     app:layout_constraintStart_toStartOf="@+id/tv_spatial_description"
                     app:layout_constraintTop_toBottomOf="@+id/tv_spatial_test_result" />
-
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -388,7 +389,16 @@
 
         </androidx.cardview.widget.CardView>
 
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/progressIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </ScrollView>

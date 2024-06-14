@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -46,12 +47,21 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun register() {
-        viewModel.registerUser(
-            binding.etRegisterEmail.text.toString(),
-            binding.etRegisterUsername.text.toString(),
-            binding.etRegisterPassword.text.toString(),
-            binding.etRegisterConfirmPassword.text.toString()
-        ).observe(this) {
+        val email = binding.etRegisterEmail.text.toString()
+        val username = binding.etRegisterUsername.text.toString()
+        val password = binding.etRegisterPassword.text.toString()
+        val confirmPassword = binding.etRegisterConfirmPassword.text.toString()
+
+        if (email.isBlank() || username.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
+            AlertDialog.Builder(this)
+                .setTitle("Register Failed")
+                .setMessage("Please fill in all columns")
+                .setPositiveButton("OK", null)
+                .show()
+            return
+        }
+
+        viewModel.registerUser(email, username, password, confirmPassword).observe(this) {
             if (it is Result.Loading) {
                 showLoading(true)
             } else {
@@ -62,12 +72,9 @@ class RegisterActivity : AppCompatActivity() {
                         val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                         startActivity(intent)
                     }
-
                     is Result.Error -> {
-                        Toast.makeText(this, "Register Failed : ${it.error})", Toast.LENGTH_SHORT)
-                            .show()
+                        Toast.makeText(this, "Register Failed", Toast.LENGTH_SHORT).show()
                     }
-
                     else -> {}
                 }
             }

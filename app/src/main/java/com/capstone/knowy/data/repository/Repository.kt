@@ -6,12 +6,17 @@ import androidx.lifecycle.liveData
 import com.capstone.knowy.data.api.ApiService
 import com.capstone.knowy.data.preference.Preference
 import com.capstone.knowy.data.preference.UserModel
+import com.capstone.knowy.data.response.AptitudeAnswerResponse
+import com.capstone.knowy.data.response.AptitudeQuestionResponse
 import com.capstone.knowy.data.response.CommentsItem
 import com.capstone.knowy.data.response.Forum
 import com.capstone.knowy.data.response.ForumsItem
+import com.capstone.knowy.data.response.OceanResponse
+import com.capstone.knowy.data.response.ScoresItem
 import com.capstone.knowy.data.response.User
 import com.capstone.knowy.data.result.Result
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
 
@@ -38,10 +43,11 @@ class Repository private constructor(
             pref.saveAccessToken(response.loginResult.token)
             pref.saveSession(
                 user = UserModel(
-                    response.loginResult.name,
+                    response.loginResult.userId,
                     response.loginResult.token
                 )
             )
+            Log.d("User Id", response.loginResult.userId)
             emit(Result.Success(response.status))
         } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
@@ -112,6 +118,7 @@ class Repository private constructor(
     }
 
     fun createComment(id: String, comment: String) = flow<Result<String>> {
+        emit(Result.Loading)
         try {
             val token = "Bearer ${pref.getAccessToken()}"
             val response = apiService.addComment(token, id, comment)
@@ -123,6 +130,7 @@ class Repository private constructor(
     }
 
     fun getComment(id: String): LiveData<Result<List<CommentsItem>>> = liveData {
+        emit(Result.Loading)
         try {
             val token = "Bearer ${pref.getAccessToken()}"
             val response = apiService.getComment(id, token)
@@ -130,6 +138,65 @@ class Repository private constructor(
         } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
             Log.e("Error Get Comment", "${e.message}", e)
+        }
+    }
+
+    fun getAptitudeQuestion(name: String): LiveData<Result<AptitudeQuestionResponse>> = liveData {
+        emit(Result.Loading)
+        try {
+            val response = apiService.getAptitudeQuestion(name)
+            emit(Result.Success(response))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
+            Log.e("Error Get Aptitude Question", "${e.message}", e)
+        }
+    }
+
+    fun getAptitudeAnswer(name: String): LiveData<Result<AptitudeAnswerResponse>> = liveData {
+        emit(Result.Loading)
+        try {
+            val response = apiService.getAptitudeAnswer(name)
+            emit(Result.Success(response))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
+            Log.e("Error Get Answer", "${e.message}", e)
+        }
+    }
+
+    fun getOceanQuestion(name: String): LiveData<Result<OceanResponse>> = liveData {
+        emit(Result.Loading)
+        try {
+            val response = apiService.getOceanQuestions(name)
+            emit(Result.Success(response))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
+            Log.e("Error Get Ocean Question", "${e.message}", e)
+        }
+    }
+
+    fun saveScore(name: String, score: String) = flow<Result<String>> {
+        emit(Result.Loading)
+        try {
+            val token = "Bearer ${pref.getAccessToken()}"
+            val response = apiService.saveScore(token, name, score)
+            emit(Result.Success(response.message))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
+            Log.e("Error Save Score", "${e.message}", e)
+        }
+    }
+
+    fun getScore(name: String): LiveData<Result<ScoresItem>> = liveData {
+        emit(Result.Loading)
+        try {
+            val token = "Bearer ${pref.getAccessToken()}"
+            val response = apiService.showScore(name, token)
+            val score =
+                response.scores.firstOrNull { it.userId == pref.getSession().first().userId }
+            emit(Result.Success(score ?: ScoresItem("0", "", "")))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
+            Log.e("Error Get Score", "${e.message}", e)
         }
     }
 

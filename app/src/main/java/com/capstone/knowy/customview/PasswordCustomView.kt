@@ -18,10 +18,12 @@ class PasswordCustomView @JvmOverloads constructor(
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s.toString().length < 8) {
-                    setError("The password must not be less than 8 characters", null)
-                } else {
-                    error = null
+                if (s != null) {
+                    if (s.toString().length < 8 || !s.firstOrNull()?.isUpperCase()!!) {
+                        setError("Password must be at least 8 characters and start with an uppercase letter", null)
+                    } else {
+                        error = null
+                    }
                 }
             }
 
