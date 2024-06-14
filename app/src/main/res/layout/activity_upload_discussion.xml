@@ -11,6 +11,7 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -19,7 +20,8 @@
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="Create New Discussion" />
+            app:title="Create New Discussion"
+            app:titleTextColor="@color/white" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
@@ -29,27 +31,28 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        android:alpha="0"
         android:text="@string/upload_title"
+        android:textColor="@color/blue"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:alpha="0"
-        tools:alpha="100"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        tools:alpha="100" />
 
     <ImageView
-        android:contentDescription="@string/image_discussion"
         android:id="@+id/iv_upload_disccussion"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_marginTop="48dp"
-        android:src="@drawable/img_upload"
         android:alpha="0"
-        tools:alpha="100"
+        android:contentDescription="@string/image_discussion"
+        android:src="@drawable/img_upload"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        tools:alpha="100" />
 
     <TextView
         android:id="@+id/tv_head_topic"
@@ -57,13 +60,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:alpha="0"
         android:text="@string/head_topic"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:alpha="0"
-        tools:alpha="100"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_upload_disccussion" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_upload_disccussion"
+        tools:alpha="100" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_head_topic"
@@ -71,10 +74,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:alpha="0"
-        tools:alpha="100"
         app:layout_constraintEnd_toEndOf="@+id/tv_title_upload_discussion"
         app:layout_constraintStart_toStartOf="@+id/tv_title_upload_discussion"
-        app:layout_constraintTop_toBottomOf="@+id/tv_head_topic">
+        app:layout_constraintTop_toBottomOf="@+id/tv_head_topic"
+        tools:alpha="100">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_head_topic"
@@ -88,13 +91,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/description"
-        android:textStyle="bold"
-        android:textSize="16sp"
         android:alpha="0"
-        tools:alpha="100"
+        android:text="@string/description"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/tv_title_upload_discussion"
-        app:layout_constraintTop_toBottomOf="@+id/til_head_topic" />
+        app:layout_constraintTop_toBottomOf="@+id/til_head_topic"
+        tools:alpha="100" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_description"
@@ -102,11 +105,11 @@
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:alpha="0"
-        tools:alpha="100"
         app:layout_constraintBottom_toTopOf="@+id/btn_upload"
         app:layout_constraintEnd_toEndOf="@+id/tv_title_upload_discussion"
         app:layout_constraintStart_toStartOf="@+id/tv_title_upload_discussion"
-        app:layout_constraintTop_toBottomOf="@+id/tv_description">
+        app:layout_constraintTop_toBottomOf="@+id/tv_description"
+        tools:alpha="100">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_description"
@@ -121,14 +124,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="32dp"
+        android:alpha="0"
         android:text="@string/create_discussion"
         android:textSize="16sp"
-        android:alpha="0"
-        tools:alpha="100"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/tv_title_upload_discussion"
         app:layout_constraintStart_toStartOf="@+id/tv_title_upload_discussion"
-        app:layout_constraintTop_toBottomOf="@+id/til_description" />
+        app:layout_constraintTop_toBottomOf="@+id/til_description"
+        tools:alpha="100" />
 
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/progressIndicator"

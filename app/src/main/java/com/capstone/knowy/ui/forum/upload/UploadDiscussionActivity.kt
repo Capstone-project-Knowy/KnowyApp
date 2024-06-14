@@ -48,10 +48,15 @@ class UploadDiscussionActivity : AppCompatActivity() {
     }
 
     private fun createDiscussion() {
-        viewModel.createDiscussion(
-            binding.etHeadTopic.text.toString(),
-            binding.etDescription.text.toString()
-        ).observe(this) {
+        val headTopic = binding.etHeadTopic.text.toString()
+        val description = binding.etDescription.text.toString()
+
+        if (headTopic.isBlank() || description.isBlank()) {
+            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        viewModel.createDiscussion(headTopic, description).observe(this) {
             if (it is Result.Loading) {
                 showLoading(true)
             } else {
@@ -60,15 +65,13 @@ class UploadDiscussionActivity : AppCompatActivity() {
                     is Result.Success -> {
                         loadFragment(ForumDiscussionFragment())
                     }
-
                     is Result.Error -> {
                         Toast.makeText(
                             this,
-                            "Failed Create Discussion : ${it.error})",
+                            "Failed Create Discussion)",
                             Toast.LENGTH_SHORT
                         ).show()
                     }
-
                     else -> {}
                 }
             }

@@ -46,12 +46,17 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     private fun editProfile() {
-        viewModel.editProfileUser(
-            binding.etFullName.text.toString(),
-            binding.etUsername.text.toString()
-        ).observe(this) {
+        val fullName = binding.etFullName.text.toString()
+        val username = binding.etUsername.text.toString()
+
+        if (fullName.isBlank() || username.isBlank()) {
+            Toast.makeText(this, "Please Fill in All Fields", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        viewModel.editProfileUser(fullName, username).observe(this) {
             if (it is Result.Loading) {
-                showLoading(false)
+                showLoading(true)
             } else {
                 showLoading(false)
                 when (it) {
@@ -59,12 +64,9 @@ class EditProfileActivity : AppCompatActivity() {
                         Toast.makeText(this, "Profile has been Updated", Toast.LENGTH_SHORT).show()
                         loadFragment(ProfileFragment())
                     }
-
                     is Result.Error -> {
-                        Toast.makeText(this, "Edit Failed : ${it.error})", Toast.LENGTH_SHORT)
-                            .show()
+                        Toast.makeText(this, "Edit Failed : ${it.error})", Toast.LENGTH_SHORT).show()
                     }
-
                     else -> {}
                 }
             }
