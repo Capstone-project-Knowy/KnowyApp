@@ -1,10 +1,10 @@
 # Knowy
 
-## Deskripsi Proyek
+## Project Description
 
 Knowy is an application that will help students find job recommendations that suit their personality. The purpose of this application is to help students not have doubts in choosing the direction they will take.
 
-## Fitur-Fitur Knowy
+## Knowy Features
 
 - **Analisis Rekomendasi Pekerjaan**
   This feature is a key feature of our application, where users can find out job recommendations that are suitable for them. The job recommendations given depend on their OCEAN and Aptitude test results.
@@ -18,7 +18,7 @@ Knowy is an application that will help students find job recommendations that su
 - **Forum Diskusi**
   This feature is a forum for users to hold discussions. Users can also create a discussion and other users can comment on the discussion.
 
-## Cara Penggunaan Aplikasi
+## How to Use The Application
 
 1. Users are required to log in first before accessing the application. If they don't have an account, users can register an account first
 2. The main features can be accessed if the user has completed 5 tests from the OCEAN test and 5 tests from the Aptitude Test
