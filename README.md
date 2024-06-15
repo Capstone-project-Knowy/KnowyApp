@@ -103,7 +103,8 @@ This feature is a forum for users to hold discussions. Users can also create a d
 
 ### Interface Design
 
-![Forum Discussion 1](https://github.com/Capstone-project-Knowy/KnowyApp/assets/116048191/eadc82bb-5582-4f90-8fb9-102e73d5b3ef) ![Forum Discussion 2](https://github.com/Capstone-project-Knowy/KnowyApp/assets/116048191/973385ea-113b-4e4b-9652-eb25b607f811)
+![Forum Discussion 1](https://github.com/Capstone-project-Knowy/KnowyApp/assets/116048191/eadc82bb-5582-4f90-8fb9-102e73d5b3ef) ![Forum Discussion 3](https://github.com/Capstone-project-Knowy/KnowyApp/assets/116048191/9dfb9019-4c8d-4e42-9e76-3c25386f4b62)
+ ![Forum Discussion 2](https://github.com/Capstone-project-Knowy/KnowyApp/assets/116048191/973385ea-113b-4e4b-9652-eb25b607f811)
 
 ## Profile
 
