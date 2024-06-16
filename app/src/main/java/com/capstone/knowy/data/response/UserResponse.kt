@@ -65,3 +65,24 @@ data class LoginResult(
     val token: String
 )
 
+data class UserScoreResponse(
+
+    @field:SerializedName("scores")
+    val scores: List<Scores>,
+
+    @field:SerializedName("userId")
+    val userId: String,
+
+    @field:SerializedName("status")
+    val status: String
+)
+
+data class Scores(
+
+    @field:SerializedName("score")
+    val score: String,
+
+    @field:SerializedName("documentName")
+    val documentName: String
+)
+

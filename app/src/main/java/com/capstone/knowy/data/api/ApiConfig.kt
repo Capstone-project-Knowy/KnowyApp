@@ -9,7 +9,15 @@ import java.util.concurrent.TimeUnit
 
 class ApiConfig {
     companion object {
-        fun getApiService(): ApiService {
+        fun getApiServiceMobile(): ApiService {
+            return createApiService(BuildConfig.URL_MD, ApiService::class.java)
+        }
+
+        fun getApiServiceMachine(): MachineService {
+            return createApiService(BuildConfig.URL_ML, MachineService::class.java)
+        }
+
+        private fun <T> createApiService(baseUrl: String, apiServiceClass: Class<T>): T {
             val loggingInterceptor = if (BuildConfig.DEBUG) {
                 HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
             } else {
@@ -18,17 +26,18 @@ class ApiConfig {
 
             val client = OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
-                .connectTimeout(10, TimeUnit.SECONDS)
-                .readTimeout(10, TimeUnit.SECONDS)
-                .writeTimeout(10, TimeUnit.SECONDS)
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS)
                 .build()
 
-            val retrofit = Retrofit
-                .Builder()
-                .baseUrl(BuildConfig.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create()).client(client).build()
+            val retrofit = Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build()
 
-            return retrofit.create(ApiService::class.java)
+            return retrofit.create(apiServiceClass)
         }
     }
 }

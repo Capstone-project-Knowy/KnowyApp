@@ -1,13 +1,11 @@
 package com.capstone.knowy.ui.forum.detail
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.knowy.R
 import com.capstone.knowy.adapter.CommentAdapter
@@ -17,6 +15,7 @@ import com.capstone.knowy.data.response.Forum
 import com.capstone.knowy.data.result.Result
 import com.capstone.knowy.databinding.ActivityDetailDiscussionBinding
 import com.capstone.knowy.ui.factory.ViewModelFactory
+import com.capstone.knowy.ui.home.MainActivity
 
 class DetailDiscussionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailDiscussionBinding
@@ -30,13 +29,7 @@ class DetailDiscussionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailDiscussionBinding.inflate(layoutInflater)
-        enableEdgeToEdge()
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.detail_discussion_activity)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
         val forumId = intent.getStringExtra(EXTRA_FORUM_ID)
 
@@ -53,9 +46,14 @@ class DetailDiscussionActivity : AppCompatActivity() {
             attachCommentData(it)
         }
 
-        binding.btnSubmit.setOnClickListener() {
+        binding.btnSubmit.setOnClickListener {
             createComment(forumId.toString())
             refreshData(forumId.toString())
+        }
+
+        binding.imgBack.setOnClickListener {
+            val intent = Intent(this@DetailDiscussionActivity, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -113,7 +111,8 @@ class DetailDiscussionActivity : AppCompatActivity() {
                 showLoading(false)
                 when (it) {
                     is Result.Success -> {
-                        Toast.makeText(this, "Comment Added Successfully", Toast.LENGTH_SHORT)
+                        Toast.makeText(this,
+                            getString(R.string.add_comment_success), Toast.LENGTH_SHORT)
                             .show()
                         binding.etComment.setText("")
                     }
@@ -121,7 +120,7 @@ class DetailDiscussionActivity : AppCompatActivity() {
                     is Result.Error -> {
                         Toast.makeText(
                             this,
-                            "Add Comment Failed : ${it.error})",
+                            getString(R.string.add_comment_failed, it.error),
                             Toast.LENGTH_SHORT
                         ).show()
                         binding.etComment.setText("")

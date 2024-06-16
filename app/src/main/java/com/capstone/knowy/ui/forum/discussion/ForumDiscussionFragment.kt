@@ -42,7 +42,7 @@ class ForumDiscussionFragment : Fragment() {
             attachData(it)
         }
 
-        binding.btnCreate.setOnClickListener() {
+        binding.btnCreate.setOnClickListener {
             val intent = Intent(activity, UploadDiscussionActivity::class.java)
             startActivity(intent)
         }

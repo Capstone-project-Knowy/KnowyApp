@@ -102,5 +102,20 @@
     <string name="are_your_sure_you_want_logout">Are your sure you want logout ?</string>
     <string name="cancel">Cancel</string>
     <string name="image_comment">Image Comment</string>
+    <string name="image_back">Image Back</string>
+    <string name="test_result_detail">Test Result Detail</string>
+    <string name="complete_test">Please Complete the Test First</string>
+    <string name="save_success">Save Success</string>
+    <string name="save_failed">Save Failed : %1$s)</string>
+    <string name="select_answer">Please select answer to continue</string>
+    <string name="register_success">Register Success</string>
+    <string name="register_failed">Register Failed</string>
+    <string name="profile_updated">Profile has been Updated</string>
+    <string name="fill_all_fields">Please Fill in All Fields</string>
+    <string name="login_success">Login Success</string>
+    <string name="add_comment_success">Comment Added Successfully</string>
+    <string name="add_comment_failed">Add Comment Failed : %1$s)</string>
+    <string name="success_create_discussion">Success Create Discussion</string>
+    <string name="failed_create_discussion">Failed Create Discussion</string>
 
 </resources>

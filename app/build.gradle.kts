@@ -16,7 +16,8 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "BASE_URL", "\"https://bangkit-knowy.mansuf-cf.my.id/\"")
+        buildConfigField("String", "URL_MD", "\"https://bangkit-knowy.mansuf-cf.my.id/\"")
+        buildConfigField("String", "URL_ML", "\"https://ml-backend-pyho3ylk3q-et.a.run.app/\"")
     }
 
     buildTypes {
