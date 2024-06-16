@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.capstone.knowy.data.api.ApiService
+import com.capstone.knowy.data.api.MachineService
 import com.capstone.knowy.data.preference.Preference
 import com.capstone.knowy.data.preference.UserModel
 import com.capstone.knowy.data.response.AptitudeAnswerResponse
@@ -22,6 +23,7 @@ import kotlinx.coroutines.runBlocking
 
 class Repository private constructor(
     private val apiService: ApiService,
+    private val machineService: MachineService,
     private val pref: Preference
 ) {
     fun registerUser(email: String, username: String, password: String, confirmPassword: String) =
@@ -200,6 +202,30 @@ class Repository private constructor(
         }
     }
 
+    fun getUserScore(): LiveData<Result<List<Float>>> = liveData {
+        emit(Result.Loading)
+        try {
+            val token = "Bearer ${pref.getAccessToken()}"
+            val response = apiService.scoreShow(pref.getSession().first().userId, token)
+            val scores = response.scores.map { it.score.toFloat() }
+            emit(Result.Success(scores))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
+            Log.e("Error Get User Score", "${e.message}", e)
+        }
+    }
+
+    fun predictCareer(data: String) = flow<Result<String>> {
+        emit(Result.Loading)
+        try {
+            val response = machineService.predictCareer(data)
+            emit(Result.Success(response.predictedCareer))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
+            Log.e("Error Predict Career", "${e.message}", e)
+        }
+    }
+
     fun getSession(): Flow<UserModel> {
         return pref.getSession()
     }
@@ -214,10 +240,11 @@ class Repository private constructor(
         private var instance: Repository? = null
         fun getInstance(
             apiService: ApiService,
+            machineService: MachineService,
             pref: Preference
         ): Repository =
             instance ?: synchronized(this) {
-                instance ?: Repository(apiService, pref)
+                instance ?: Repository(apiService, machineService, pref)
             }.also { instance = it }
     }
 }

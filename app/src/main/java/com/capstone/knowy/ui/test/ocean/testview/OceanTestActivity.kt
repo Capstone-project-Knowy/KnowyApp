@@ -6,12 +6,9 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.capstone.knowy.R
 import com.capstone.knowy.data.di.Injection
 import com.capstone.knowy.data.result.Result
@@ -37,13 +34,7 @@ class OceanTestActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityOceanTestBinding.inflate(layoutInflater)
-        enableEdgeToEdge()
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.ocean_test_activity)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
         testName = intent.getStringExtra(EXTRA_TEST_NAME)
         binding.topAppBar.title = testName
@@ -72,7 +63,7 @@ class OceanTestActivity : AppCompatActivity(), View.OnClickListener {
 
         if (clickedBtn.id == binding.btnNext.id) {
             if (selectedAnswer.isEmpty()) {
-                Toast.makeText(this, "Please select answer to continue", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.select_answer), Toast.LENGTH_SHORT).show()
                 return
             }
             checkAnswer()
@@ -148,11 +139,12 @@ class OceanTestActivity : AppCompatActivity(), View.OnClickListener {
         viewModel.saveScore(testName!!, score.toString()).observe(this) {
             when (it) {
                 is Result.Success -> {
-                    Toast.makeText(this, "Save Success", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.save_success), Toast.LENGTH_SHORT).show()
                 }
 
                 is Result.Error -> {
-                    Toast.makeText(this, "Save Failed : ${it.error})", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,
+                        getString(R.string.save_failed, it.error), Toast.LENGTH_SHORT).show()
                 }
 
                 else -> {}

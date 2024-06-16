@@ -5,11 +5,8 @@ import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.capstone.knowy.R
 import com.capstone.knowy.data.di.Injection
@@ -31,16 +28,10 @@ class UploadDiscussionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUploadDiscussionBinding.inflate(layoutInflater)
-        enableEdgeToEdge()
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.upload_activity)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
 
-        binding.btnUpload.setOnClickListener() {
+        binding.btnUpload.setOnClickListener {
             createDiscussion()
         }
 
@@ -52,7 +43,7 @@ class UploadDiscussionActivity : AppCompatActivity() {
         val description = binding.etDescription.text.toString()
 
         if (headTopic.isBlank() || description.isBlank()) {
-            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.fill_all_fields), Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -63,15 +54,22 @@ class UploadDiscussionActivity : AppCompatActivity() {
                 showLoading(false)
                 when (it) {
                     is Result.Success -> {
+                        Toast.makeText(
+                            this,
+                            getString(R.string.success_create_discussion),
+                            Toast.LENGTH_SHORT
+                        ).show()
                         loadFragment(ForumDiscussionFragment())
                     }
+
                     is Result.Error -> {
                         Toast.makeText(
                             this,
-                            "Failed Create Discussion)",
+                            getString(R.string.failed_create_discussion),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
+
                     else -> {}
                 }
             }

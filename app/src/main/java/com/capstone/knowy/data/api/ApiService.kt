@@ -14,6 +14,7 @@ import com.capstone.knowy.data.response.RegisterResponse
 import com.capstone.knowy.data.response.SaveScoreResponse
 import com.capstone.knowy.data.response.ShowScoreResponse
 import com.capstone.knowy.data.response.UserResponse
+import com.capstone.knowy.data.response.UserScoreResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -113,5 +114,11 @@ interface ApiService {
         @Path("TestName") name: String,
         @Header("Authorization") token: String
     ): ShowScoreResponse
+
+    @GET("scoreShow/{userId}")
+    suspend fun scoreShow(
+        @Path("userId") id: String,
+        @Header("Authorization") token: String
+    ): UserScoreResponse
 
 }

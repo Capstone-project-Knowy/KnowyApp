@@ -41,12 +41,12 @@ class ProfileFragment : Fragment() {
             getDetail(it)
         }
 
-        binding.btnEditProfile.setOnClickListener(){
+        binding.btnEditProfile.setOnClickListener {
             val intent = Intent(activity, EditProfileActivity::class.java)
             startActivity(intent)
         }
 
-        binding.btnLogout.setOnClickListener(){
+        binding.btnLogout.setOnClickListener {
             logout()
         }
         return root

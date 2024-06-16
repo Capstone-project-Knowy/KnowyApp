@@ -5,17 +5,15 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.capstone.knowy.R
 import com.capstone.knowy.data.di.Injection
 import com.capstone.knowy.data.response.ScoresItem
 import com.capstone.knowy.data.result.Result
 import com.capstone.knowy.databinding.ActivityOceanHomeBinding
 import com.capstone.knowy.ui.factory.ViewModelFactory
+import com.capstone.knowy.ui.home.MainActivity
 import com.capstone.knowy.ui.test.ocean.testview.OceanTestActivity
 
 class OceanHomeActivity : AppCompatActivity() {
@@ -31,20 +29,14 @@ class OceanHomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityOceanHomeBinding.inflate(layoutInflater)
-        enableEdgeToEdge()
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.ocean_home_activity)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
-        binding.btnOpenness.setOnClickListener() {
+        binding.btnOpenness.setOnClickListener {
             val intent = Intent(this@OceanHomeActivity, OceanTestActivity::class.java)
             intent.putExtra(OceanTestActivity.EXTRA_TEST_NAME, getString(R.string.openness))
             startActivity(intent)
         }
-        binding.btnConscientiousness.setOnClickListener() {
+        binding.btnConscientiousness.setOnClickListener {
             val intent = Intent(this@OceanHomeActivity, OceanTestActivity::class.java)
             intent.putExtra(
                 OceanTestActivity.EXTRA_TEST_NAME,
@@ -52,19 +44,23 @@ class OceanHomeActivity : AppCompatActivity() {
             )
             startActivity(intent)
         }
-        binding.btnExtraVersion.setOnClickListener() {
+        binding.btnExtraVersion.setOnClickListener {
             val intent = Intent(this@OceanHomeActivity, OceanTestActivity::class.java)
             intent.putExtra(OceanTestActivity.EXTRA_TEST_NAME, getString(R.string.extra_version))
             startActivity(intent)
         }
-        binding.btnAgreeableness.setOnClickListener() {
+        binding.btnAgreeableness.setOnClickListener {
             val intent = Intent(this@OceanHomeActivity, OceanTestActivity::class.java)
             intent.putExtra(OceanTestActivity.EXTRA_TEST_NAME, getString(R.string.agreeableness))
             startActivity(intent)
         }
-        binding.btnNeuroticism.setOnClickListener() {
+        binding.btnNeuroticism.setOnClickListener {
             val intent = Intent(this@OceanHomeActivity, OceanTestActivity::class.java)
             intent.putExtra(OceanTestActivity.EXTRA_TEST_NAME, getString(R.string.neuroticism))
+            startActivity(intent)
+        }
+        binding.imgBack.setOnClickListener {
+            val intent = Intent(this@OceanHomeActivity, MainActivity::class.java)
             startActivity(intent)
         }
 

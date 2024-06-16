@@ -2,20 +2,17 @@ package com.capstone.knowy.ui.test.aptitude.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.capstone.knowy.R
 import com.capstone.knowy.data.di.Injection
 import com.capstone.knowy.data.response.ScoresItem
 import com.capstone.knowy.data.result.Result
 import com.capstone.knowy.databinding.ActivityAptitudeHomeBinding
 import com.capstone.knowy.ui.factory.ViewModelFactory
+import com.capstone.knowy.ui.home.MainActivity
 import com.capstone.knowy.ui.test.aptitude.testview.AptitudeTestActivity
 
 class AptitudeHomeActivity : AppCompatActivity() {
@@ -30,37 +27,35 @@ class AptitudeHomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAptitudeHomeBinding.inflate(layoutInflater)
-        enableEdgeToEdge()
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.aptitude_home_activity)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
-        binding.btnNumerical.setOnClickListener() {
+        binding.btnNumerical.setOnClickListener {
             val intent = Intent(this@AptitudeHomeActivity, AptitudeTestActivity::class.java)
             intent.putExtra(AptitudeTestActivity.TEST_NAME, getString(R.string.numerical_aptitude))
             startActivity(intent)
         }
-        binding.btnSpatial.setOnClickListener() {
+        binding.btnSpatial.setOnClickListener {
             val intent = Intent(this@AptitudeHomeActivity, AptitudeTestActivity::class.java)
             intent.putExtra(AptitudeTestActivity.TEST_NAME, getString(R.string.spatial_aptitude))
             startActivity(intent)
         }
-        binding.btnPerceptual.setOnClickListener() {
+        binding.btnPerceptual.setOnClickListener {
             val intent = Intent(this@AptitudeHomeActivity, AptitudeTestActivity::class.java)
             intent.putExtra(AptitudeTestActivity.TEST_NAME, getString(R.string.perceptual_aptitude))
             startActivity(intent)
         }
-        binding.btnAbstrac.setOnClickListener() {
+        binding.btnAbstrac.setOnClickListener {
             val intent = Intent(this@AptitudeHomeActivity, AptitudeTestActivity::class.java)
             intent.putExtra(AptitudeTestActivity.TEST_NAME, getString(R.string.abstract_reasoning))
             startActivity(intent)
         }
-        binding.btnVerbal.setOnClickListener() {
+        binding.btnVerbal.setOnClickListener {
             val intent = Intent(this@AptitudeHomeActivity, AptitudeTestActivity::class.java)
             intent.putExtra(AptitudeTestActivity.TEST_NAME, getString(R.string.verbal_reasoning))
+            startActivity(intent)
+        }
+        binding.imgBack.setOnClickListener {
+            val intent = Intent(this@AptitudeHomeActivity, MainActivity::class.java)
             startActivity(intent)
         }
 
@@ -84,7 +79,6 @@ class AptitudeHomeActivity : AppCompatActivity() {
         when (result) {
             is Result.Success -> {
                 val data = result.data
-                Log.d("Data Score", data.score)
                 when (name) {
                     getString(R.string.numerical_aptitude) -> {
                         binding.tvNumericalScore.text = data.score

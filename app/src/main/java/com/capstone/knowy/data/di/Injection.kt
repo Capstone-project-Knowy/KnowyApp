@@ -9,7 +9,8 @@ import com.capstone.knowy.data.repository.Repository
 object Injection {
     fun provideRepository(context: Context): Repository {
         val pref = Preference.getInstance(context.dataStore)
-        val apiService = ApiConfig.getApiService()
-        return Repository.getInstance(apiService, pref)
+        val apiService = ApiConfig.getApiServiceMobile()
+        val machineService = ApiConfig.getApiServiceMachine()
+        return Repository.getInstance(apiService, machineService, pref)
     }
 }

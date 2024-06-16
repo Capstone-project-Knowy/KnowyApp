@@ -6,12 +6,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.capstone.knowy.R
 import com.capstone.knowy.data.di.Injection
 import com.capstone.knowy.data.result.Result
@@ -31,15 +28,9 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
-        enableEdgeToEdge()
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.register_activity)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
-        binding.btnRegister.setOnClickListener() {
+        binding.btnRegister.setOnClickListener {
             register()
         }
 
@@ -54,7 +45,7 @@ class RegisterActivity : AppCompatActivity() {
 
         if (email.isBlank() || username.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
             AlertDialog.Builder(this)
-                .setTitle("Register Failed")
+                .setTitle(getString(R.string.register_failed))
                 .setMessage("Please fill in all columns")
                 .setPositiveButton("OK", null)
                 .show()
@@ -68,13 +59,16 @@ class RegisterActivity : AppCompatActivity() {
                 showLoading(false)
                 when (it) {
                     is Result.Success -> {
-                        Toast.makeText(this, "Register Success", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this,
+                            getString(R.string.register_success), Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                         startActivity(intent)
                     }
+
                     is Result.Error -> {
-                        Toast.makeText(this, "Register Failed", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, getString(R.string.register_failed), Toast.LENGTH_SHORT).show()
                     }
+
                     else -> {}
                 }
             }

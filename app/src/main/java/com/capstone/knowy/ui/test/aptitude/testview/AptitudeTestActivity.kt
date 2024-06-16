@@ -6,12 +6,9 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.capstone.knowy.R
 import com.capstone.knowy.data.di.Injection
@@ -38,13 +35,7 @@ class AptitudeTestActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAptitudeTestBinding.inflate(layoutInflater)
-        enableEdgeToEdge()
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.aptitude_test_activity)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
         testName = intent.getStringExtra(TEST_NAME)
         binding.topAppBar.title = testName
@@ -69,7 +60,7 @@ class AptitudeTestActivity : AppCompatActivity(), View.OnClickListener {
         val clickedBtn = view as Button
         if (clickedBtn.id == binding.btnNext.id) {
             if (selectedAnswer.isEmpty()) {
-                Toast.makeText(this, "Please select answer to continue", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.select_answer), Toast.LENGTH_SHORT).show()
                 return
             }
             viewModel.getAnswer(testName!!).observe(this) {
@@ -109,10 +100,10 @@ class AptitudeTestActivity : AppCompatActivity(), View.OnClickListener {
                     val question = it.data
                     viewModel.setDataSize(question.imageUrls.size)
                     if (currentIndex == viewModel.getDataSize()) {
-                        viewModel.saveScore(testName!!.toString(), score.toString()).observe(this) {
+                        viewModel.saveScore(testName!!.toString(), score.toFloat().toString()).observe(this) {
                             when (it) {
                                 is Result.Success -> {
-                                    Toast.makeText(this, "Save Success", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this, getString(R.string.save_success), Toast.LENGTH_SHORT).show()
                                 }
 
                                 is Result.Error -> {
