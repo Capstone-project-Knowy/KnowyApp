@@ -58,38 +58,41 @@ class TestFragment : Fragment() {
                 when (result) {
                     is Result.Success -> {
                         val data = result.data
-                        if (data.size == 10) {
-                            viewModel.predictCareer(data.toString()).observe(viewLifecycleOwner) { predict ->
-                                when (predict) {
-                                    is Result.Loading -> showLoading(true)
-                                    is Result.Success -> {
-                                        showLoading(false)
-                                        val intent = Intent(activity, ResultTestActivity::class.java).apply {
-                                            putExtra(ResultTestActivity.EXTRA_RESULT, predict.data)
+                        if (data.isNotEmpty()) {
+                            if (data.size == 10) {
+                                viewModel.predictCareer(data.toString()).observe(viewLifecycleOwner) { predict ->
+                                    when (predict) {
+                                        is Result.Loading -> showLoading(true)
+                                        is Result.Success -> {
+                                            showLoading(false)
+                                            val intent = Intent(activity, ResultTestActivity::class.java).apply {
+                                                putExtra(ResultTestActivity.EXTRA_RESULT, predict.data)
+                                            }
+                                            startActivity(intent)
                                         }
-                                        startActivity(intent)
+                                        is Result.Error -> {
+                                            showLoading(false)
+                                            Log.e("Predict Career Error", predict.error)
+                                            Toast.makeText(activity, predict.error, Toast.LENGTH_LONG).show()
+                                        }
+                                        else -> {}
                                     }
-                                    is Result.Error -> {
-                                        showLoading(false)
-                                        Log.e("Predict Career Error", predict.error)
-                                        Toast.makeText(activity, predict.error, Toast.LENGTH_LONG).show()
-                                    }
-                                    else -> {}
                                 }
+                            } else {
+                                Toast.makeText(requireActivity(), getString(R.string.complete_test), Toast.LENGTH_LONG).show()
                             }
                         } else {
                             Toast.makeText(requireActivity(), getString(R.string.complete_test), Toast.LENGTH_LONG).show()
                         }
                     }
                     is Result.Error -> {
-                        Log.e("Get User Score Error", result.error)
-                        Toast.makeText(activity, result.error, Toast.LENGTH_LONG).show()
+                        Toast.makeText(activity, getString(R.string.never_test), Toast.LENGTH_LONG).show()
                     }
                     else -> {}
                 }
             }
-
         }
+
         return root
     }
 
