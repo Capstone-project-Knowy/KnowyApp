@@ -117,5 +117,6 @@
     <string name="add_comment_failed">Add Comment Failed : %1$s)</string>
     <string name="success_create_discussion">Success Create Discussion</string>
     <string name="failed_create_discussion">Failed Create Discussion</string>
+    <string name="never_test">You Haven\'t Done Any Tests at All</string>
 
 </resources>
