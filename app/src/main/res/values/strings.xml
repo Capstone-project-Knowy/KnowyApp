@@ -118,5 +118,7 @@
     <string name="success_create_discussion">Success Create Discussion</string>
     <string name="failed_create_discussion">Failed Create Discussion</string>
     <string name="never_test">You Haven\'t Done Any Tests at All</string>
+    <string name="error_empty_email">Please Input Your Email</string>
+    <string name="error_empty_password">Please Input Your Password</string>
 
 </resources>

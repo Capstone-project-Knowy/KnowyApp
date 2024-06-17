@@ -37,7 +37,22 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.btnLogin.setOnClickListener {
-            loginUser()
+            val email = binding.etLoginEmail.text.toString().trim()
+            val password = binding.etLoginPassword.text.toString().trim()
+
+            if (email.isEmpty() || password.isEmpty()) {
+                if (email.isEmpty()) {
+                    binding.etLoginEmail.error = getString(R.string.error_empty_email)
+                }
+                if (password.isEmpty()) {
+                    binding.etLoginPassword.error = getString(R.string.error_empty_password)
+                }
+                binding.etLoginEmail.error = getString(R.string.error_empty_email)
+                binding.etLoginPassword.error = getString(R.string.error_empty_password)
+            } else {
+                loginUser()
+            }
+
         }
         playAnimation()
     }
