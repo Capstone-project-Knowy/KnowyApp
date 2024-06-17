@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.Knowy" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
@@ -11,7 +11,6 @@
         <item name="colorOnSecondaryContainer">@color/white</item>
 
         <item name="colorSurface">@color/blue</item>
-        <item name="colorOnSurface">@color/white</item>
         <item name="colorOnSurfaceVariant">@color/blue</item>
     </style>
 
