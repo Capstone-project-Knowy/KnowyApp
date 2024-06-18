@@ -44,7 +44,6 @@
             android:layout_marginTop="8dp"
             android:alpha="0"
             android:text="@string/enter_information"
-            android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/tv_register_account"
             app:layout_constraintTop_toBottomOf="@+id/tv_register_account"
